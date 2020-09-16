@@ -10,9 +10,10 @@ source:
   sha256: 14742af19a24956e7f01dab82bcf966eee689da2bc3a01d63cabc5fba0668599
   patches:
     - no-werror.patch
+    - support-aarch64-math.patch  # [linux-aarch64]
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage("aws-c-common", max_pin="x.x.x") }}
 
