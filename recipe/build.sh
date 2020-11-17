@@ -10,7 +10,6 @@ cmake ${CMAKE_ARGS} -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_SHARED_LIBS=ON \
   ..
-ninja install
 cd ..
 
 mkdir build-static
@@ -21,4 +20,4 @@ cmake ${CMAKE_ARGS} -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_SHARED_LIBS=OFF \
   ..
-ninja install
+cd ..

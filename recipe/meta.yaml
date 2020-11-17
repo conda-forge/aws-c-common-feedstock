@@ -23,18 +23,36 @@ requirements:
     - {{ compiler('c') }}
     - ninja
 
-test:
-  commands:
-    - test -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
-    - test -f $PREFIX/lib/libaws-c-common.a  # [unix]
-    - test -f $PREFIX/include/aws/common/config.h  # [unix]
-    - test -f $PREFIX/lib/cmake/AwsCFlags.cmake  # [unix]
-    # Check for the non-existence of -Werror in the CFLAGS
-    - "! grep Werror $PREFIX/lib/cmake/AwsCFlags.cmake"  # [unix]
-    - if not exist %PREFIX%\\Library\\bin\\aws-c-common.dll exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\aws-c-common.lib exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\include\\aws\\common\\config.h exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
+outputs:
+  - name: aws-c-common
+    script: install.sh  # [unix]
+    test:
+      commands:
+        - test -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
+        - test ! -f $PREFIX/lib/libaws-c-common.a  # [unix]
+        - test -f $PREFIX/include/aws/common/config.h  # [unix]
+        - test -f $PREFIX/lib/cmake/AwsCFlags.cmake  # [unix]
+        # Check for the non-existence of -Werror in the CFLAGS
+        - "! grep Werror $PREFIX/lib/cmake/AwsCFlags.cmake"  # [unix]
+        - if not exist %PREFIX%\\Library\\bin\\aws-c-common.dll exit 1  # [win]
+        - if exist %PREFIX%\\Library\\lib\\aws-c-common.lib exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\include\\aws\\common\\config.h exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
+
+  - name: aws-c-common-static
+    script: install.sh  # [unix]
+    test:
+      commands:
+        - test ! -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
+        - test -f $PREFIX/lib/libaws-c-common.a  # [unix]
+        - test -f $PREFIX/include/aws/common/config.h  # [unix]
+        - test -f $PREFIX/lib/cmake/AwsCFlags.cmake  # [unix]
+        # Check for the non-existence of -Werror in the CFLAGS
+        - "! grep Werror $PREFIX/lib/cmake/AwsCFlags.cmake"  # [unix]
+        - if exist %PREFIX%\\Library\\bin\\aws-c-common.dll exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\lib\\aws-c-common.lib exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\include\\aws\\common\\config.h exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
 
 about:
   home: https://github.com/awslabs/aws-c-common
