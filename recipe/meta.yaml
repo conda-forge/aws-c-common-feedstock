@@ -25,7 +25,7 @@ requirements:
 
 outputs:
   - name: aws-c-common
-    script: install.sh  # [unix]
+    script: install.sh
     requirements:
       build:
         - cmake
@@ -45,7 +45,7 @@ outputs:
         - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
 
   - name: aws-c-common-static
-    script: install.sh  # [unix]
+    script: install.sh
     requirements:
       build:
         - cmake
