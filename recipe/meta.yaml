@@ -26,6 +26,11 @@ requirements:
 outputs:
   - name: aws-c-common
     script: install.sh  # [unix]
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - ninja
     test:
       commands:
         - test -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
@@ -41,6 +46,11 @@ outputs:
 
   - name: aws-c-common-static
     script: install.sh  # [unix]
+    requirements:
+      build:
+        - cmake
+        - {{ compiler('c') }}
+        - ninja
     test:
       commands:
         - test ! -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
