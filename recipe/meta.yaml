@@ -17,15 +17,14 @@ build:
   run_exports:
     - {{ pin_subpackage("aws-c-common", max_pin="x.x.x") }}
 
-requirements:
-  build:
-    - cmake
-    - {{ compiler('c') }}
-    - ninja
-
 outputs:
   - name: aws-c-common
-    script: install.sh
+    script: build-shared.sh  # [unix]
+    script: bld-shared.bat  # [win]
+    build:
+      activate_in_script: True
+      run_exports:
+        - {{ pin_subpackage("aws-c-common", max_pin="x.x.x") }}
     requirements:
       build:
         - cmake
@@ -45,7 +44,10 @@ outputs:
         - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
 
   - name: aws-c-common-static
-    script: install.sh
+    script: build-static.sh  # [unix]
+    script: bld-static.bat  # [win]
+    build:
+      activate_in_script: True
     requirements:
       build:
         - cmake
