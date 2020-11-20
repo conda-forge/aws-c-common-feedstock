@@ -10,5 +10,5 @@ cmake ${CMAKE_ARGS} -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_SHARED_LIBS=OFF \
   ..
-cd ..
 ninja install
+cd ..
