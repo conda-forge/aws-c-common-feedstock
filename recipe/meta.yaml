@@ -53,6 +53,8 @@ outputs:
         - cmake
         - {{ compiler('c') }}
         - ninja
+      host:
+        - {{ pin_subpackage("aws-c-common", exact=True) }}
     test:
       commands:
         - test ! -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
