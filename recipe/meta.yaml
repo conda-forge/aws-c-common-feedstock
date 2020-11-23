@@ -2,7 +2,7 @@
 {% set version = "0.4.59" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
@@ -74,6 +74,7 @@ about:
   summary: Core c99 package for AWS SDK for C. Includes cross-platform primitives, configuration, data structures, and error handling.
 
 extra:
+  feedstock-name: aws-c-common
   recipe-maintainers:
     - xhochy
     - davidbrochart
