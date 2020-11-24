@@ -57,7 +57,6 @@ outputs:
         - {{ pin_subpackage("aws-c-common", exact=True) }}
     test:
       commands:
-        - test ! -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
         - test -f $PREFIX/lib/libaws-c-common.a  # [unix]
         - test -f $PREFIX/include/aws/common/config.h  # [unix]
         - test -f $PREFIX/lib/cmake/AwsCFlags.cmake  # [unix]
