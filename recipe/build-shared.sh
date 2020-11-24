@@ -2,8 +2,8 @@
 
 set -ex
 
-mkdir build
-pushd build
+mkdir build-shared
+cd build-shared
 cmake ${CMAKE_ARGS} -GNinja \
   -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
   -DCMAKE_INSTALL_LIBDIR=lib \
@@ -11,4 +11,4 @@ cmake ${CMAKE_ARGS} -GNinja \
   -DBUILD_SHARED_LIBS=ON \
   ..
 ninja install
-popd
+cd ..
