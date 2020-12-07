@@ -1,5 +1,5 @@
 {% set name = "aws-c-common" %}
-{% set version = "0.4.59" %}
+{% set version = "0.4.62" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 5007ffedc64f5f979d36e223bbd80a5c03ecaca151c003944b63e06f1b2845ff
+  sha256: e761fc9c2d88d0d7223b09f90c6f657bc720a6ed4fbce43aabd045d33e2589e8
   patches:
     - no-werror.patch
     - 0001-Don-t-hardcode-the-CoreFoundation-path.patch
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage("aws-c-common", max_pin="x.x.x") }}
 
@@ -29,7 +29,7 @@ test:
     - test -f $PREFIX/include/aws/common/config.h  # [unix]
     - test -f $PREFIX/lib/cmake/AwsCFlags.cmake  # [unix]
     # Check for the non-existence of -Werror in the CFLAGS
-    - "! grep Werror $PREFIX/lib/cmake/AwsCFlags.cmake"  # [unix]
+    - '! grep Werror $PREFIX/lib/cmake/AwsCFlags.cmake'  # [unix]
     - if not exist %PREFIX%\\Library\\bin\\aws-c-common.dll exit 1  # [win]
     - if not exist %PREFIX%\\Library\\include\\aws\\common\\config.h exit 1  # [win]
     - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
