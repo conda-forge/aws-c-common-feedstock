@@ -90,6 +90,7 @@ Installing `aws-c-common` from the `conda-forge` channel can be achieved by addi
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `aws-c-common` can be installed with:
