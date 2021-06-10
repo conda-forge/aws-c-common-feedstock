@@ -9,7 +9,7 @@ source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 1d83174b73b030aca802b220e45576822ef71dddc33041bf77d7847148e7c496
   patches:
-    - no-werror.patch
+    - 0001-Explicitly-remove-Werror.patch
 
 build:
   number: 0

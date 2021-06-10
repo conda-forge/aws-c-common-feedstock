@@ -1,0 +1,27 @@
+From cc5836ea4840a305dc759ab5fc429a42705f102c Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Thu, 10 Jun 2021 10:57:29 +0200
+Subject: [PATCH] Explicitly remove Werror
+
+---
+ cmake/AwsCFlags.cmake | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/cmake/AwsCFlags.cmake b/cmake/AwsCFlags.cmake
+index 1f3b5a9..d8a3e07 100644
+--- a/cmake/AwsCFlags.cmake
++++ b/cmake/AwsCFlags.cmake
+@@ -91,10 +91,6 @@ function(aws_set_common_properties target)
+     else()
+         list(APPEND AWS_C_FLAGS -Wall -Wstrict-prototypes -fno-omit-frame-pointer)
+ 
+-        if(AWS_WARNINGS_ARE_ERRORS)
+-            list(APPEND AWS_C_FLAGS -Werror)
+-        endif()
+-
+         if(NOT SET_PROPERTIES_NO_WEXTRA)
+             list(APPEND AWS_C_FLAGS -Wextra)
+         endif()
+-- 
+2.30.1 (Apple Git-130)
+
