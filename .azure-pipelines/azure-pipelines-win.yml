@@ -50,11 +50,19 @@ jobs:
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
 
-    - task: CondaEnvironment@1
-      inputs:
-        packageSpecs: 'python=3.6 conda-build conda "conda-forge-ci-setup=3" pip' # Optional
-        installOptions: "-c conda-forge"
-        updateConda: true
+    - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+      displayName: Add conda to PATH
+
+    # Configure the VM.
+    - script: |
+        conda update -c conda-forge conda
+      displayName: Update conda
+
+    # Configure the VM.
+    - script: |
+        set "CI=azure"
+        call activate base
+        conda install -c conda-forge python=3.6 conda-build conda-forge-ci-setup=3 pip
       displayName: Install conda-build and activate environment
 
     - script: set PYTHONUNBUFFERED=1
