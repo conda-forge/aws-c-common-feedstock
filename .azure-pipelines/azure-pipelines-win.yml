@@ -50,11 +50,23 @@ jobs:
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
 
-    - task: CondaEnvironment@1
-      inputs:
-        packageSpecs: 'python=3.6 conda-build conda "conda-forge-ci-setup=3" pip' # Optional
-        installOptions: "-c conda-forge"
-        updateConda: true
+    - powershell: |
+        Set-PSDebug -Trace 1
+
+        Import-Module BitsTransfer
+
+        Start-BitsTransfer -Source https://github.com/conda-forge/miniforge/releases/download/4.10.2-0/Mambaforge-Windows-x86_64.exe -Destination Miniforge3-Windows-x86_64.exe
+
+        Start-Process -FilePath Miniforge3-Windows-x86_64.exe -Wait -ArgumentList "/InstallationType=JustMe", "/RegisterPython=0", "/S", "/D=$Env:UserProfile\Miniforge3";
+
+    - powershell: Write-Host "##vso[task.prependpath]$env:UserProfile\Miniforge3\Scripts"
+      displayName: Add conda to PATH
+
+    # Configure the VM.
+    - script: |
+        set "CI=azure"
+        call activate base
+        mamba install conda-build conda-forge-ci-setup=3 pip
       displayName: Install conda-build and activate environment
 
     - script: set PYTHONUNBUFFERED=1
