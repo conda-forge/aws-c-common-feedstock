@@ -1,11 +1,11 @@
-About aws-c-common
-==================
+About aws-c-common-feedstock
+============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/aws-c-common-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/awslabs/aws-c-common
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/aws-c-common-feedstock/blob/main/LICENSE.txt)
 
 Summary: Core c99 package for AWS SDK for C. Includes cross-platform primitives, configuration, data structures, and error handling.
 
