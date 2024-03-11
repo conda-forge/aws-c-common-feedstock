@@ -7,7 +7,7 @@ bot:
   automerge: true
   version_updates:
     exclude:
-      - 08.14
+      - '08.14'
 github:
   branch_name: main
   tooling_branch_name: main
