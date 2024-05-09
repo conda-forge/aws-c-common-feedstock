@@ -1,5 +1,5 @@
 {% set name = "aws-c-common" %}
-{% set version = "0.9.17" %}
+{% set version = "0.9.18" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 82f1a88494c5563892f0e048f0f56acfe7e10e5aa3fe9267b956dbabcc043440
+  sha256: 1927e399c24bd51fd698508ccb7b905de4c11f518fa1b7062cd8c06b36fe82ae
   patches:
     - 0001-Explicitly-remove-Werror.patch
 
