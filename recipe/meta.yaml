@@ -27,12 +27,12 @@ test:
   commands:
     - test -f $PREFIX/lib/libaws-c-common${SHLIB_EXT}  # [unix]
     - test -f $PREFIX/include/aws/common/config.h  # [unix]
-    - test -f $PREFIX/lib/cmake/AwsCFlags.cmake  # [unix]
+    - test -f $PREFIX/lib/cmake/aws-c-common/modules/AwsCFlags.cmake  # [unix]
     # Check for the non-existence of -Werror in the CFLAGS
     - '! grep Werror $PREFIX/lib/cmake/AwsCFlags.cmake'  # [unix]
     - if not exist %PREFIX%\\Library\\bin\\aws-c-common.dll exit 1  # [win]
     - if not exist %PREFIX%\\Library\\include\\aws\\common\\config.h exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\cmake\\AwsCFlags.cmake exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\cmake\\aws-c-common\\modules\\AwsCFlags.cmake exit 1  # [win]
 
 about:
   home: https://github.com/awslabs/aws-c-common
