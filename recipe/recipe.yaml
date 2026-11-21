@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: aws-c-common
-  version: "1.0.5"
+  version: "1.0.6"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/awslabs/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: d00f08b4e2eb173c2d2ce25993b64c3263b906581bd0315845b9b31b0b7799dc
+  sha256: a8f6fe8c696059ab5d4ddc45c78df21e7abc3391dace2dd88f285439e8d7f6dc
   patches:
     - 0001-Explicitly-remove-Werror.patch
 
